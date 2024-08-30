@@ -3,8 +3,8 @@
 //
 //	This kernel module outputs a brief message to the console.
 //
-//		compile using: $ mmake hello 
-//		install using: $ /sbin/insmod hello.ko
+//		compile using: $ make 
+//		install using: $ sudo insmod hello.ko
 //
 //-----------------------------------------------------------------
 
@@ -22,7 +22,9 @@ void exit1(void )
 	printk( "\n   Goodbye now... \n\n" );
 }
 
-MODULE_LICENSE("GPL");
-module_init(init1);
 module_exit(exit1);
+module_init(init1);
 
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Name");
+MODULE_DESCRIPTION("Printing messages in kernel");
