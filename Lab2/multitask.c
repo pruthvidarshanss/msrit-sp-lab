@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
-main()
+int main()
 {
 	int pid,dip,cpid;
 	pid=fork();
