@@ -1,17 +1,10 @@
-CONFIG_MODULE_SIG=n
+obj-m := lab6.o
 
-ifneq	($(KERNELRELEASE),)
-obj-m	:= lab6.o 
+KERNELDIR := /lib/modules/$(shell uname -r)/build
+PWD := $(shell pwd)
 
-else
-KDIR	:= /lib/modules/$(shell uname -r)/build
-PWD	:= $(shell pwd)
 default:
-	$(MAKE) HOSTCC=x86_64-linux-gnu-gcc-12 CC=x86_64-linux-gnu-gcc-12 -C $(KDIR) M=$(PWD) modules 
-	rm -r -f .tmp_versions *.mod.c .*.cmd *.o *.symvers 
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 
 clean:
-	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions *.mod *.order
-
-endif
-
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
